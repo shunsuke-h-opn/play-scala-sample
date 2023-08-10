@@ -1,0 +1,88 @@
+@(todoForm: Form[models.TodoFormData],todos : Seq[models.Todo])(implicit request: RequestHeader)
+  @main() {
+
+    <form id="todo-data-form" role="form" action='/add' method="post" class="form-horizontal" align="center" autocomplete="off">
+
+      <fieldset class="todo-fieldset">
+
+        <div class="todo-form">
+          <label class="form-title" style="color: #F8741B; font-size: 22px;font-weight: bold; text-decoration:none">title</label>
+        </div>
+        <br/>
+        <table align="center" cellspacing="20">
+          
+          <tr>
+            <td align="left">
+              <div class="todo-form" id="title_field_label">
+                <div class="controls col-xs-offset-3 col-xs-9">
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <strong>title</strong> :
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td align="center">
+              <div class="todo-form" id="title_field_value">
+                <div class="controls col-xs-offset-3 col-xs-9">
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <input type="text" id="title" name="title" value="" placeholder="Last Name" class="form-control input-lg" required>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">
+              <div class="user-form" id="mobile_field_label">
+                <div class="controls col-xs-offset-3 col-xs-9">
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <strong>status</strong> :
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td align="center">
+              <div class="user-form" id="status_field_value">
+                <div class="controls col-xs-offset-3 col-xs-9">
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <input type="text" id="status" name="status" placeholder="Mobile" class="form-control input-lg" required>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+        </table>
+        <br/>
+        <div class="form-actions controls ynt-btn-xlarge">
+          <button type="submit" class="btn btn-primary ynt-btn-orange">Add</button>
+        </div>
+
+      </fieldset>
+    </form>
+
+    <div class="todo-display" >
+      <fieldset>
+        <legend align="center"><h3>Registered Todos</h3></legend>
+        <table cellspacing="20">
+          <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>status</th>
+          </tr>
+          @for(todo <- todos){
+            <tr>
+              <td>@todo.id</td>
+              <td>@todo.title</td>
+              <td>@todo.status</td>
+            </tr>
+          }
+        </table>
+      </fieldset>
+    </div>
+
+  }
